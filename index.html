@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html ng-app="ScoreCounter">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<title>Score Counter</title>
+		<link href="css/icon.css" rel="stylesheet">
+		<link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+		<link href="css/counter.css" type="text/css" rel="stylesheet"/>
+	</head>
+	<body ng-controller="ScoreController as scoreCtrl">
+		<div class="welcome">
+			<div class="start">
+				<div class="btn-back">
+					<div class="name-warning red">
+						<h5 class="center-align">Please specify names!</h5>
+					</div>
+					<div class="input-field">
+						<input id="name-0" type="text" class="validate" ng-model="score.users[0]" />
+						<label for="name-0">Player 1</label>
+					</div>
+					<div class="input-field">
+						<input id="name-1" type="text" class="validate" ng-model="score.users[1]" />
+						<label for="name-1">Player 2</label>
+					</div>
+					<div class="input-field">
+						<input id="name-2" type="text" class="validate" ng-model="score.users[2]" />
+						<label for="name-2">Player 3</label>
+					</div>
+					<div class="input-field">
+						<input id="name-3" type="text" class="validate" ng-model="score.users[3]" />
+						<label for="name-3">Player 4</label>
+					</div>
+					<button class="yes" ng-click="addUsers()">Yes</button>
+					<button class="no">No</button>
+				</div>
+				<div class="btn-front" ng-click="checkLocal()">Start Playing</div>
+			</div>
+		</div>
+		<div class="main-content">
+			<div class="main-column container">
+				<div class="row">
+					<div class="col s12 m6 l3">
+						<div class="card" ng-click="addWinner(0)">
+							<div class="card-content white-text">
+								<div class="user-score">
+									<span class="card-title">{{score.total[0]}}</span>
+								</div>
+							</div>
+							<div class="card-action blue-grey darken-2">
+								<div class="user-name white-text">
+									<p>{{score.users[0]}}</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col s12 m6 l3">
+						<div class="card" ng-click="addWinner(1)">
+							<div class="card-content white-text">
+								<div class="user-score">
+									<span class="card-title">{{score.total[1]}}</span>
+								</div>
+							</div>
+							<div class="card-action blue-grey darken-2">
+								<div class="user-name white-text">
+									<p>{{score.users[1]}}</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col s12 m6 l3">
+						<div class="card" ng-click="addWinner(2)">
+							<div class="card-content white-text">
+								<div class="user-score">
+									<span class="card-title">{{score.total[2]}}</span>
+								</div>
+							</div>
+							<div class="card-action blue-grey darken-2">
+								<div class="user-name white-text">
+									<p>{{score.users[2]}}</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col s12 m6 l3">
+						<div class="card" ng-click="addWinner(3)">
+							<div class="card-content white-text">
+								<div class="user-score">
+									<span class="card-title">{{score.total[3]}}</span>
+								</div>
+							</div>
+							<div class="card-action blue-grey darken-2">
+								<div class="user-name white-text">
+									<p>{{score.users[3]}}</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<a class="waves-effect waves-light btn-large modal-trigger red" href="#modal3" id="clear-history">Clear History</a>
+				<div id="modal1" class="modal col l4">
+					<div class="modal-content">
+						<h4 class="center-align">Please enter points lost</h4>
+						<div class="event-warning red">
+							<h5 class="center-align">Please enter numbers!</h5>
+						</div>
+						<div class="input-field" id="input-name-0">
+							<input id="name-0" type="text" class="validate" ng-model="batch.score_get[0]">
+							<label for="name-0" id="event-name-0">{{score.users[0]}}</label>
+						</div>
+						<div class="input-field" id="input-name-1">
+							<input id="name-1" type="text" class="validate" ng-model="batch.score_get[1]">
+							<label for="name-1" id="event-name-1">{{score.users[1]}}</label>
+						</div>
+						<div class="input-field" id="input-name-2">
+							<input id="name-2" type="text" class="validate" ng-model="batch.score_get[2]">
+							<label for="name-2" id="event-name-2">{{score.users[2]}}</label>
+						</div>
+						<div class="input-field" id="input-name-3">
+							<input id="name-3" type="text" class="validate" ng-model="batch.score_get[3]">
+							<label for="name-3" id="event-name-3">{{score.users[3]}}</label>
+						</div>
+						<a class="waves-effect waves-light btn" id="event-update" ng-click="addScore()">
+							<i class="material-icons right">send</i>
+							Add Score
+						</a>
+					</div>
+				</div>
+				<div id="modal2" class="modal bottom-sheet">
+					<div class="modal-content">
+						<h4>History record found!</h4>
+						<p>A history record have been found in your browser, do you wish to proceed playing with this record?</p>
+					</div>
+					<div class="modal-footer">
+						<a class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="clearLocal()">No</a>
+						<a class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="restoreLocal()">Yes</a>
+					</div>
+				</div>
+				<div id="modal3" class="modal bottom-sheet">
+					<div class="modal-content">
+						<h4>Do you wish to proceed?</h4>
+						<p>All play history will be erased, click "Yes" if you wish to proceed</p>
+					</div>
+					<div class="modal-footer">
+						<a class="modal-action modal-close waves-effect waves-green btn-flat">No</a>
+						<a class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="clearLocal()">Yes</a>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="table-area col l12" id="score-detail">
+						<table class="centered" id="score-table">
+							<thead>
+								<tr>
+									<th data-field="player-1" id="table-name-1">{{score.users[0]}}</th>
+									<th data-field="player-2" id="table-name-2">{{score.users[1]}}</th>
+									<th data-field="player-3" id="table-name-3">{{score.users[2]}}</th>
+									<th data-field="player-4" id="table-name-4">{{score.users[3]}}</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="item in score.history">
+									<td ng-class="item[0] > 0 ? 'win' : 'lose'">{{item[0]}}</td>
+									<td ng-class="item[1] > 0 ? 'win' : 'lose'">{{item[1]}}</td>
+									<td ng-class="item[2] > 0 ? 'win' : 'lose'">{{item[2]}}</td>
+									<td ng-class="item[3] > 0 ? 'win' : 'lose'">{{item[3]}}</td>
+								</tr>					
+							</tbody>
+
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/vendor/jquery.min.js"></script>
+		<script type="text/javascript" src="js/vendor/materialize.js"></script>
+		<script type="text/javascript" src="js/vendor/angular.min.js"></script>
+		<script type="text/javascript" src="js/vendor/angular-route.js"></script>
+		<script type="text/javascript" src="js/counter_ang.js"></script>
+		<script type="text/javascript" src="js/counter1.js"></script>
+	</body>
+</html>
