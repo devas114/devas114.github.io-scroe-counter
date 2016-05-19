@@ -103,6 +103,13 @@ angular.module('ScoreCounter',[]).controller('ScoreController', ['$scope', funct
 		jQuery('#modal1 input').prop('disabled', false).removeClass('valid').prop('required',true);
 	};
 
+	$scope.checkClear = function(){
+		window.scrollTo(0, 0);
+		setTimeout(function() {
+			jQuery("#modal3").openModal();
+		}, 30);
+	};
+
 	$scope.checkLocal = function(){
 		var b = parseInt(window.localStorage.getItem('t'));
 		var a = Date.now();
@@ -132,8 +139,8 @@ angular.module('ScoreCounter',[]).controller('ScoreController', ['$scope', funct
 			$scope.score.history.push(s);
 		}
 		jQuery(".start").removeClass('is-open');
-		jQuery(".main-content").css("left","0%");
-		jQuery("#history").css("display", "block");
+		jQuery(".main-content").css({"transform": "translateX(-200%)"});
+		jQuery(".main-history").css({"display": "block"});
 	}
 
 	$scope.clearLocal = function(){
@@ -144,7 +151,9 @@ angular.module('ScoreCounter',[]).controller('ScoreController', ['$scope', funct
 		window.localStorage.setItem('h1', '');
 		window.localStorage.setItem('h2', '');
 		window.localStorage.setItem('h3', '');
-		jQuery(".main-content").css("left", "200%");
+		jQuery(".welcome").css("overflow-x", "hidden");
+		jQuery(".main-content").css({"transform": "translateX(200%)"});
+		jQuery(".main-history").css({"display": "none"});
 		$scope.score = {
 			users:{
 				0: null,
@@ -155,7 +164,6 @@ angular.module('ScoreCounter',[]).controller('ScoreController', ['$scope', funct
 			total:{},
 			history:[]
 		};
-		jQuery("#history").css("display", "none");
 	}
 
 	$scope.updateLocal = function(){

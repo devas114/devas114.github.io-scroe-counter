@@ -5,6 +5,7 @@
         btnYes = $(".yes"),
         btnNo = $(".no"),
         btnHistory = $("#view-history");
+        btnClear = $("#clear-history");
 
     btnFront.on("click", function(event){
         var mx = event.clientX - btn.offset().left,
@@ -34,12 +35,12 @@
             name3 = $("#name-2").val(),
             name4 = $("#name-3").val();
         if(name1 && name2 && name3 && name4){
-            $(".main-content").css("left","0%");
+            $(".main-content").css("transform","translateX(-200%)");
             btn.removeClass("is-open");
         }else{
             $(".name-warning").css("display","block");
         }
-        $("#history").css("display", "block");
+        $(".main-history").css("display", "block");
     });
 
     btnNo.on("click", function(){
@@ -48,16 +49,19 @@
     });
 
     btnHistory.on("click", function(){
+        $(".welcome").css("overflow-x", "visible");
         $("html,body").animate({
             scrollTop: $("#history").offset().top
         }, "slow");
     });
-
+/*
+    btnClear.on("click", function(){
+        window.scrollTo(0, 0);
+    })
+*/
     function distance(x1, y1, x2, y2){
         var dx = x1 - x2;
         var dy = y1 - y2;
         return Math.sqrt(dx*dx + dy*dy);
     };
-
-    $('#clear-history').leanModal();
 })()
