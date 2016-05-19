@@ -259,12 +259,33 @@ body {
 
 @media only screen and (max-width: 600px){
   .main-content{
-    height: 250%;
+    height: 280%;
+  }
+
+  #view-history{
+    display: none;
+  }
+
+  .start.is-open {
+    width: 15rem;
+    height: 30rem;
+  }
+
+  #modal1{
+    width: 20rem;
+    height: 30rem;
+  }
+
+  #modal1 h4{
+    display: none;
   }
 }
 
-#view-history{
-  margin-right: 30px;
+#view-history, #clear-history{
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .card{
