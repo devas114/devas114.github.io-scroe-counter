@@ -97,6 +97,7 @@
 						</div>
 					</div>
 				</div>
+				<a class="waves-effect waves-light btn-large teal lighten-2" id="view-history">View History</a>
 				<a class="waves-effect waves-light btn-large modal-trigger red" href="#modal3" id="clear-history">Clear History</a>
 				<div id="modal1" class="modal col l4">
 					<div class="modal-content">
@@ -147,28 +148,29 @@
 					</div>
 				</div>
 			</div>
-			<div class="container">
-				<div class="row">
-					<div class="table-area col l12" id="score-detail">
-						<table class="centered" id="score-table">
-							<thead>
-								<tr>
-									<th data-field="player-1" id="table-name-1">{{score.users[0]}}</th>
-									<th data-field="player-2" id="table-name-2">{{score.users[1]}}</th>
-									<th data-field="player-3" id="table-name-3">{{score.users[2]}}</th>
-									<th data-field="player-4" id="table-name-4">{{score.users[3]}}</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr ng-repeat="item in score.history">
-									<td ng-class="item[0] > 0 ? 'win' : 'lose'">{{item[0]}}</td>
-									<td ng-class="item[1] > 0 ? 'win' : 'lose'">{{item[1]}}</td>
-									<td ng-class="item[2] > 0 ? 'win' : 'lose'">{{item[2]}}</td>
-									<td ng-class="item[3] > 0 ? 'win' : 'lose'">{{item[3]}}</td>
-								</tr>					
-							</tbody>
-
-						</table>
+			<div class="main-history" id="history">
+				<div class="score-board container">
+					<div class="row">
+						<div class="table-area col l12 m12 s12" id="score-detail">
+							<table class="centered" id="score-table">
+								<thead>
+									<tr>
+										<th data-field="player-1" id="table-name-1">{{score.users[0]}}</th>
+										<th data-field="player-2" id="table-name-2">{{score.users[1]}}</th>
+										<th data-field="player-3" id="table-name-3">{{score.users[2]}}</th>
+										<th data-field="player-4" id="table-name-4">{{score.users[3]}}</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="item in score.history">
+										<td ng-class="item[0] > 0 ? 'win' : 'lose'">{{item[0]}}</td>
+										<td ng-class="item[1] > 0 ? 'win' : 'lose'">{{item[1]}}</td>
+										<td ng-class="item[2] > 0 ? 'win' : 'lose'">{{item[2]}}</td>
+										<td ng-class="item[3] > 0 ? 'win' : 'lose'">{{item[3]}}</td>
+									</tr>					
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>

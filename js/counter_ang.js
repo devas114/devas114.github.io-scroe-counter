@@ -131,8 +131,9 @@ angular.module('ScoreCounter',[]).controller('ScoreController', ['$scope', funct
 			s.push(parseInt(h3[i]));
 			$scope.score.history.push(s);
 		}
-		jQuery(".start").removeClass('is-open')
+		jQuery(".start").removeClass('is-open');
 		jQuery(".main-content").css("left","0%");
+		jQuery("#history").css("display", "block");
 	}
 
 	$scope.clearLocal = function(){
@@ -154,6 +155,7 @@ angular.module('ScoreCounter',[]).controller('ScoreController', ['$scope', funct
 			total:{},
 			history:[]
 		};
+		jQuery("#history").css("display", "none");
 	}
 
 	$scope.updateLocal = function(){

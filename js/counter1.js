@@ -3,7 +3,8 @@
 
     var btnFront = $(".btn-front"),
         btnYes = $(".yes"),
-        btnNo = $(".no");
+        btnNo = $(".no"),
+        btnHistory = $("#view-history");
 
     btnFront.on("click", function(event){
         var mx = event.clientX - btn.offset().left,
@@ -38,12 +39,18 @@
         }else{
             $(".name-warning").css("display","block");
         }
-
+        $("#history").css("display", "block");
     });
 
     btnNo.on("click", function(){
         btn.removeClass("is-open");
         $(".name-warning").css("display","none");
+    });
+
+    btnHistory.on("click", function(){
+        $("html,body").animate({
+            scrollTop: $("#history").offset().top
+        }, "slow");
     });
 
     function distance(x1, y1, x2, y2){
